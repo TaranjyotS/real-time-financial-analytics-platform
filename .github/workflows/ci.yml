@@ -20,12 +20,12 @@ jobs:
         run: ruff check backend/app backend/tests
 
       - name: Run Bandit
-        run: bandit -r backend/app -q -s B311
+        run: bandit -c .bandit -r backend/app -q
 
       - name: Run Pytest
         env:
           PYTHONPATH: backend
-        run: pytest backend/tests
+        run: pytest backend/tests --cov=backend/app --cov-report=term
 
   frontend:
     runs-on: ubuntu-latest
