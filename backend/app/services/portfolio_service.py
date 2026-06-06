@@ -22,7 +22,9 @@ class PortfolioService:
         return holding
 
     def calculate_value(self, portfolio_id: int) -> dict:
-        holdings = self.db.query(Holding).filter(Holding.portfolio_id == portfolio_id).all()
+        holdings = (
+            self.db.query(Holding).filter(Holding.portfolio_id == portfolio_id).all()
+        )
         total = 0.0
         details = []
         for holding in holdings:
@@ -36,5 +38,16 @@ class PortfolioService:
             value = holding.quantity * price
             total += value
             asset = self.db.get(Asset, holding.asset_id)
-            details.append({"symbol": asset.symbol if asset else holding.asset_id, "quantity": holding.quantity, "price": price, "value": value})
-        return {"portfolio_id": portfolio_id, "total_value": round(total, 2), "holdings": details}
+            details.append(
+                {
+                    "symbol": asset.symbol if asset else holding.asset_id,
+                    "quantity": holding.quantity,
+                    "price": price,
+                    "value": value,
+                }
+            )
+        return {
+            "portfolio_id": portfolio_id,
+            "total_value": round(total, 2),
+            "holdings": details,
+        }

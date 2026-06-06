@@ -108,7 +108,9 @@ class Alert(Base):
     __tablename__ = "alerts"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     user_id: Mapped[int | None] = mapped_column(ForeignKey("users.id"), nullable=True)
-    portfolio_id: Mapped[int | None] = mapped_column(ForeignKey("portfolios.id"), nullable=True)
+    portfolio_id: Mapped[int | None] = mapped_column(
+        ForeignKey("portfolios.id"), nullable=True
+    )
     alert_type: Mapped[str] = mapped_column(String(50), index=True)
     severity: Mapped[AlertSeverity] = mapped_column(Enum(AlertSeverity))
     message: Mapped[str] = mapped_column(Text)

@@ -9,7 +9,9 @@ settings = get_settings()
 
 class EventProducer:
     def __init__(self) -> None:
-        self._producer = Producer({"bootstrap.servers": settings.kafka_bootstrap_servers})
+        self._producer = Producer(
+            {"bootstrap.servers": settings.kafka_bootstrap_servers}
+        )
 
     def publish(self, topic: str, event_type: str, payload: dict) -> dict:
         event = {

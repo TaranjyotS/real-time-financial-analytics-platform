@@ -1,7 +1,8 @@
 from datetime import datetime
 from sqlalchemy import DateTime, Float, ForeignKey, Integer, String, Text, JSON
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.orm import Mapped, mapped_column
 from app.db import Base
+
 
 class User(Base):
     __tablename__ = "users"
@@ -11,6 +12,7 @@ class User(Base):
     role: Mapped[str] = mapped_column(String(50), default="analyst")
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
+
 class Asset(Base):
     __tablename__ = "assets"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
@@ -18,6 +20,7 @@ class Asset(Base):
     name: Mapped[str] = mapped_column(String(100))
     asset_type: Mapped[str] = mapped_column(String(50), default="equity")
     currency: Mapped[str] = mapped_column(String(10), default="USD")
+
 
 class Portfolio(Base):
     __tablename__ = "portfolios"
@@ -27,6 +30,7 @@ class Portfolio(Base):
     base_currency: Mapped[str] = mapped_column(String(10), default="USD")
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
+
 class Holding(Base):
     __tablename__ = "holdings"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
@@ -35,6 +39,7 @@ class Holding(Base):
     quantity: Mapped[float] = mapped_column(Float)
     average_price: Mapped[float] = mapped_column(Float)
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+
 
 class Transaction(Base):
     __tablename__ = "transactions"
@@ -48,7 +53,10 @@ class Transaction(Base):
     amount: Mapped[float] = mapped_column(Float)
     status: Mapped[str] = mapped_column(String(30), default="created")
     anomaly_score: Mapped[float] = mapped_column(Float, default=0.0)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, default=datetime.utcnow, index=True
+    )
+
 
 class MarketPrice(Base):
     __tablename__ = "market_prices"
@@ -57,7 +65,10 @@ class MarketPrice(Base):
     symbol: Mapped[str] = mapped_column(String(20), index=True)
     price: Mapped[float] = mapped_column(Float)
     source: Mapped[str] = mapped_column(String(50), default="simulator")
-    event_time: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)
+    event_time: Mapped[datetime] = mapped_column(
+        DateTime, default=datetime.utcnow, index=True
+    )
+
 
 class RiskMetric(Base):
     __tablename__ = "risk_metrics"
@@ -69,16 +80,22 @@ class RiskMetric(Base):
     total_exposure: Mapped[float] = mapped_column(Float)
     calculated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
+
 class Alert(Base):
     __tablename__ = "alerts"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), index=True)
-    portfolio_id: Mapped[int | None] = mapped_column(ForeignKey("portfolios.id"), nullable=True)
+    portfolio_id: Mapped[int | None] = mapped_column(
+        ForeignKey("portfolios.id"), nullable=True
+    )
     alert_type: Mapped[str] = mapped_column(String(50), index=True)
     severity: Mapped[str] = mapped_column(String(20), index=True)
     message: Mapped[str] = mapped_column(Text)
     status: Mapped[str] = mapped_column(String(20), default="open")
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, default=datetime.utcnow, index=True
+    )
+
 
 class EventAuditLog(Base):
     __tablename__ = "event_audit_log"

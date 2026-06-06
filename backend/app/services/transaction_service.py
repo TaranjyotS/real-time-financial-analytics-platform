@@ -18,5 +18,7 @@ class TransactionService:
         self.db.add(transaction)
         self.db.commit()
         self.db.refresh(transaction)
-        self.producer.publish(TRANSACTIONS_CREATED, "transaction.created", request.model_dump())
+        self.producer.publish(
+            TRANSACTIONS_CREATED, "transaction.created", request.model_dump()
+        )
         return transaction

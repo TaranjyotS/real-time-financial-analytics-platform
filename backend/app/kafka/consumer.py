@@ -7,12 +7,14 @@ settings = get_settings()
 
 class EventConsumer:
     def __init__(self, group_id: str, topics: list[str]) -> None:
-        self.consumer = Consumer({
-            "bootstrap.servers": settings.kafka_bootstrap_servers,
-            "group.id": group_id,
-            "auto.offset.reset": "earliest",
-            "enable.auto.commit": False,
-        })
+        self.consumer = Consumer(
+            {
+                "bootstrap.servers": settings.kafka_bootstrap_servers,
+                "group.id": group_id,
+                "auto.offset.reset": "earliest",
+                "enable.auto.commit": False,
+            }
+        )
         self.consumer.subscribe(topics)
 
     def consume_forever(self, handler):

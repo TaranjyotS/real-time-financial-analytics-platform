@@ -7,7 +7,9 @@ class RiskService:
         self.db = db
 
     def calculate_portfolio_risk(self, portfolio_id: int) -> RiskMetric:
-        holdings = self.db.query(Holding).filter(Holding.portfolio_id == portfolio_id).all()
+        holdings = (
+            self.db.query(Holding).filter(Holding.portfolio_id == portfolio_id).all()
+        )
         total_exposure = sum(h.quantity * h.average_price for h in holdings)
         largest = max((h.quantity * h.average_price for h in holdings), default=0)
         concentration_score = largest / total_exposure if total_exposure else 0
@@ -22,7 +24,14 @@ class RiskService:
         )
         self.db.add(metric)
         if concentration_score > 0.6:
-            self.db.add(Alert(portfolio_id=portfolio_id, alert_type="risk", severity=AlertSeverity.high, message="Portfolio concentration risk exceeds threshold"))
+            self.db.add(
+                Alert(
+                    portfolio_id=portfolio_id,
+                    alert_type="risk",
+                    severity=AlertSeverity.high,
+                    message="Portfolio concentration risk exceeds threshold",
+                )
+            )
         self.db.commit()
         self.db.refresh(metric)
         return metric
