@@ -1,0 +1,8 @@
+TRANSACTIONS_CREATED = "transactions.created"
+TRANSACTIONS_VALIDATED = "transactions.validated"
+MARKET_PRICES_UPDATED = "market.prices.updated"
+PORTFOLIO_UPDATED = "portfolio.updated"
+RISK_ALERTS_GENERATED = "risk.alerts.generated"
+FRAUD_ALERTS_GENERATED = "fraud.alerts.generated"
+ANOMALIES_DETECTED = "anomalies.detected"
+DEAD_LETTER = "events.dead_letter"

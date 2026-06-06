@@ -1,0 +1,136 @@
+body {
+  margin: 0;
+  background: #0f172a;
+  color: #e5e7eb;
+  font-family:
+    Inter,
+    system-ui,
+    Segoe UI,
+    Arial;
+}
+main {
+  padding: 28px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+h1 {
+  font-size: 34px;
+  margin: 0;
+}
+p {
+  color: #aab4c8;
+}
+.pill {
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+.ok {
+  background: #064e3b;
+  color: #a7f3d0;
+}
+.bad {
+  background: #7f1d1d;
+}
+.hero {
+  background: linear-gradient(135deg, #1d4ed8, #7c3aed);
+  border-radius: 22px;
+  padding: 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+.hero h2 {
+  font-size: 44px;
+  margin: 0;
+}
+.hero button {
+  background: #fff;
+  color: #111827;
+  border: 0;
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.card,
+.table {
+  background: #182338;
+  border: 1px solid #334155;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 12px 28px #0003;
+}
+.cardTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cardTitle h2 {
+  font-size: 20px;
+}
+.list {
+  max-height: 220px;
+  overflow: auto;
+}
+.row {
+  border-bottom: 1px solid #334155;
+  padding: 10px 0;
+}
+.row b {
+  color: #fca5a5;
+  margin-right: 10px;
+}
+.row p {
+  margin: 5px 0;
+}
+.prices {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.prices div {
+  background: #0f172a;
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+}
+.table {
+  margin-top: 18px;
+  overflow: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th,
+td {
+  padding: 12px;
+  border-bottom: 1px solid #334155;
+  text-align: left;
+}
+th {
+  color: #93c5fd;
+}
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  header,
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "title": "Financial Analytics Platform",
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "API Requests",
+      "targets": [
+        {
+          "expr": "api_requests_total"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "API Latency",
+      "targets": [
+        {
+          "expr": "api_request_latency_seconds_bucket"
+        }
+      ]
+    }
+  ]
+}

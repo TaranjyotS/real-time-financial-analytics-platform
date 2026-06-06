@@ -1,0 +1,12 @@
+sequenceDiagram
+    participant UI as React Dashboard
+    participant API as FastAPI
+    participant DB as PostgreSQL
+    participant K as Kafka
+    participant F as Fraud Service
+    UI->>API: POST /transactions
+    API->>DB: Persist transaction
+    API->>K: Publish transactions.created
+    K->>F: Consume event
+    F->>DB: Store fraud alert if needed
+    API-->>UI: Transaction response

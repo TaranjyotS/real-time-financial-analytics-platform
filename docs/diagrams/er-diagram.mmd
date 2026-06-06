@@ -1,0 +1,9 @@
+erDiagram
+    users ||--o{ portfolios : owns
+    users ||--o{ transactions : creates
+    portfolios ||--o{ holdings : contains
+    portfolios ||--o{ risk_metrics : has
+    portfolios ||--o{ alerts : triggers
+    assets ||--o{ holdings : held_as
+    assets ||--o{ market_prices : priced_by
+    assets ||--o{ transactions : referenced_by
