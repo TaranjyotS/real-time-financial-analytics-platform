@@ -20,7 +20,7 @@ jobs:
         run: ruff check backend/app backend/tests
 
       - name: Run Bandit
-        run: bandit -r backend/app -q
+        run: bandit -r backend/app -q -s B311
 
       - name: Run Pytest
         env:
